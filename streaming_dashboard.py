@@ -11,7 +11,7 @@ st.set_page_config(
     page_icon="🏢",
     layout="wide"
 )
-
+    
 # --- Sidebar configuration ---
 st.sidebar.header("🔧 Settings")
 
@@ -142,18 +142,33 @@ st.table(latest_part_df)
 for side in ["LH", "RH"]:
     st.markdown(f"### 🔍 Dimension Quality Indicator - {side}")
     filtered_df = result_df[result_df["part_type"] == side]
+
     if not filtered_df.empty:
         filtered = filtered_df.tail(1).iloc[0]
         cols = st.columns(len(selected_dimensions))
+
         for col, dim in zip(cols, selected_dimensions):
             status = filtered[f"{dim}_status"]
-            color = "#2ecc71" if status == "Good" else "#e74c3c"
+            bg_color = "#2ecc71" if status == "Good" else "#e74c3c"
+
             with col:
-                st.markdown(f"""
-                <div style='background-color: {color}; padding: 0.5rem; border-radius: 6px; text-align: center; color: white; font-size: 0.65rem;'>
-                    <b>{dim.replace('_', ' ').title()}</b>
-                </div>
-                """, unsafe_allow_html=True)
+                st.markdown(
+                    f"""
+                    <div style="
+                        background-color: {bg_color};
+                        padding: 10px;
+                        border-radius: 8px;
+                        text-align: center;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 16px;
+                        line-height: 1.4;
+                    ">
+                        {dim.replace('_', ' ').title()}
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
 
 # --- LH & RH Split Table ---
 for side in ["LH", "RH"]:
