@@ -161,7 +161,7 @@ for side in ["LH", "RH"]:
                         text-align: center;
                         color: white;
                         font-weight: bold;
-                        font-size: 16px;
+                        font-size: 12px;
                         line-height: 1.4;
                     ">
                         {dim.replace('_', ' ').title()}
